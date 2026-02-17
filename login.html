@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Auth • A</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- فونت اختیاری -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ["Vazirmatn","system-ui","Segoe UI","Roboto","Arial"] },
+          boxShadow: {
+            luxe: "0 18px 60px rgba(0,0,0,.55)",
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="font-sans min-h-screen overflow-x-hidden text-white
+  bg-[radial-gradient(1200px_600px_at_20%_10%,rgba(124,58,237,.35),transparent_60%),radial-gradient(1000px_600px_at_85%_20%,rgba(6,182,212,.25),transparent_60%),radial-gradient(900px_500px_at_50%_90%,rgba(124,58,237,.18),transparent_60%),linear-gradient(180deg,#0b1020,#090a14)]
+  p-7 max-sm:p-4 grid place-items-center">
+
+  <!-- Grain -->
+  <div class="pointer-events-none fixed inset-0 opacity-30 mix-blend-overlay"
+    style="background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.15'/%3E%3C/svg%3E&quot;);">
+  </div>
+
+  <main class="w-full max-w-[980px] grid grid-cols-[1.05fr_.95fr] gap-4 max-[860px]:grid-cols-1">
+    <!-- Brand panel -->
+    <section class="relative overflow-hidden rounded-3xl border border-white/15
+      bg-gradient-to-b from-white/10 to-white/5 shadow-luxe p-7 min-h-[520px] flex flex-col justify-between">
+
+      <div class="absolute -top-20 -left-10 w-72 h-72 rounded-full blur-sm
+        bg-[radial-gradient(circle_at_30%_30%,rgba(6,182,212,.35),transparent_60%)]"></div>
+
+      <div class="relative">
+        <div class="flex items-center gap-3">
+          <!-- Logo A -->
+          <div class="relative w-14 h-14 rounded-2xl grid place-items-center overflow-hidden
+            bg-gradient-to-br from-violet-600 to-cyan-500 shadow-[0_14px_30px_rgba(0,0,0,.35)]">
+            <div class="absolute -inset-1/2 rotate-12 opacity-60
+              bg-[radial-gradient(circle_at_30%_30%,rgba(255,255,255,.70),transparent_45%)]"></div>
+            <span class="relative font-extrabold text-2xl">A</span>
+          </div>
+
+          <div>
+            <h1 class="font-extrabold text-lg">Auth Studio</h1>
+            <p class="text-white/70 text-xs leading-6">فرم ورود/ثبت‌نام حرفه‌ای با هویت بصری حرف A</p>
+          </div>
+        </div>
+
+        <div class="mt-10 relative">
+          <h2 class="text-3xl font-extrabold leading-tight tracking-tight">خوش اومدی 👋</h2>
+          <p class="mt-2 text-white/70 leading-8 text-sm max-w-[48ch]">
+            تجربه‌ی ورود و ثبت‌نام باید سریع، شفاف و امن باشه.
+            این UI برای محصول جدی طراحی شده: ریسپانسیو، مدرن و آماده‌ی اتصال به بک‌اند.
+          </p>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            <div class="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-2 text-xs text-white/85">
+              <span class="w-2 h-2 rounded-full bg-gradient-to-br from-violet-600 to-cyan-500 shadow-[0_0_0_4px_rgba(124,58,237,.12)]"></span>
+              ریسپانسیو واقعی
+            </div>
+            <div class="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-2 text-xs text-white/85">
+              <span class="w-2 h-2 rounded-full bg-gradient-to-br from-violet-600 to-cyan-500 shadow-[0_0_0_4px_rgba(124,58,237,.12)]"></span>
+              طراحی مینیمال و لوکس
+            </div>
+            <div class="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-2 text-xs text-white/85">
+              <span class="w-2 h-2 rounded-full bg-gradient-to-br from-violet-600 to-cyan-500 shadow-[0_0_0_4px_rgba(124,58,237,.12)]"></span>
+              آماده‌ی اتصال API
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative mt-6 pt-4 border-t border-white/10 flex items-center justify-between gap-3 flex-wrap text-white/75 text-xs">
+        <span>© 2026 • A Identity</span>
+        <span class="flex items-center gap-2">
+          <a class="border-b border-dashed border-white/30 hover:border-white/70" href="#" onclick="return false;">Privacy</a>
+          <span class="text-white/40">·</span>
+          <a class="border-b border-dashed border-white/30 hover:border-white/70" href="#" onclick="return false;">Terms</a>
+        </span>
+      </div>
+    </section>
+
+    <!-- Auth card -->
+    <section class="rounded-3xl border border-white/15 bg-gradient-to-b from-white/10 to-white/5 shadow-luxe p-6 min-h-[520px]">
+      <!-- Tabs -->
+      <div class="flex gap-2 rounded-2xl border border-white/10 bg-white/5 p-1" role="tablist" aria-label="Login or Signup">
+        <button id="tab-login" role="tab" aria-selected="true"
+          class="tab flex-1 rounded-xl px-3 py-2 text-sm font-extrabold transition
+          text-white/95 bg-gradient-to-br from-violet-600/50 to-cyan-500/30 border border-white/15 shadow-[0_10px_25px_rgba(0,0,0,.25)]">
+          ورود
+        </button>
+        <button id="tab-signup" role="tab" aria-selected="false"
+          class="tab flex-1 rounded-xl px-3 py-2 text-sm font-extrabold transition
+          text-white/70 hover:text-white/90">
+          ثبت‌نام
+        </button>
+      </div>
+
+      <!-- Login panel -->
+      <div id="panel-login" class="panel mt-4">
+        <div class="mt-4 flex items-end justify-between gap-2">
+          <h3 class="text-lg font-extrabold">ورود به حساب</h3>
+          <span class="text-xs text-white/60">Welcome back</span>
+        </div>
+
+        <div id="login-msg" class="hidden mt-3 rounded-2xl border border-white/15 bg-white/5 px-4 py-3 text-sm leading-7"></div>
+
+        <form id="login-form" class="mt-3 space-y-3" novalidate>
+          <div>
+            <label class="text-xs text-white/80" for="login-email">ایمیل</label>
+            <div class="relative mt-2">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 text-white/70">
+                <!-- icon -->
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.8" />
+                </svg>
+              </span>
+              <input id="login-email" type="email" autocomplete="email" required
+                placeholder="name@example.com"
+                class="w-full rounded-2xl border border-white/15 bg-[#0a0c18]/60 px-4 py-3 pl-11
+                text-sm outline-none placeholder:text-white/40
+                focus:border-cyan-400/60 focus:ring-4 focus:ring-cyan-400/15">
+            </div>
+          </div>
+
+          <div>
+            <label class="text-xs text-white/80" for="login-password">رمز عبور</label>
+            <div class="relative mt-2">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 text-white/70">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path d="M7 10V8a5 5 0 0 1 10 0v2" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="M6 10h12v10H6V10Z" stroke="currentColor" stroke-width="1.8"/>
+                </svg>
+              </span>
+              <input id="login-password" type="password" autocomplete="current-password" minlength="6" required
+                placeholder="••••••••"
+                class="w-full rounded-2xl border border-white/15 bg-[#0a0c18]/60 px-4 py-3 pl-11
+                text-sm outline-none placeholder:text-white/40
+                focus:border-cyan-400/60 focus:ring-4 focus:ring-cyan-400/15">
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+            <label class="flex items-center gap-2 text-xs text-white/75 select-none">
+              <input id="remember" type="checkbox" class="h-4 w-4 accent-cyan-400">
+              مرا به خاطر بسپار
+            </label>
+            <a class="text-xs text-white/85 border-b border-dashed border-white/30 hover:border-white/70" href="#" onclick="return false;">
+              رمزت رو فراموش کردی؟
+            </a>
+          </div>
+
+          <button class="w-full rounded-2xl py-3 text-sm font-extrabold text-white
+            bg-gradient-to-br from-violet-600 to-cyan-500
+            shadow-[0_16px_35px_rgba(0,0,0,.35)] active:translate-y-px active:scale-[.99] transition"
+            type="submit">
+            ورود
+          </button>
+
+          <div class="flex items-center gap-3 py-1 text-xs text-white/55">
+            <div class="h-px flex-1 bg-white/12"></div>
+            یا
+            <div class="h-px flex-1 bg-white/12"></div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 max-sm:grid-cols-1">
+            <button type="button" onclick="mockSocial('Google')"
+              class="rounded-2xl border border-white/15 bg-white/5 py-3 text-sm font-bold text-white/90 hover:bg-white/10 transition">
+              ادامه با Google
+            </button>
+            <button type="button" onclick="mockSocial('GitHub')"
+              class="rounded-2xl border border-white/15 bg-white/5 py-3 text-sm font-bold text-white/90 hover:bg-white/10 transition">
+              ادامه با GitHub
+            </button>
+          </div>
+
+          <p class="pt-2 text-xs text-white/60 leading-7">
+            نکته: این نسخه UI هست. برای اتصال واقعی، در JS جای ارسال به API مشخص شده.
+          </p>
+        </form>
+      </div>
+
+      <!-- Signup panel -->
+      <div id="panel-signup" class="panel mt-4 hidden">
+        <div class="mt-4 flex items-end justify-between gap-2">
+          <h3 class="text-lg font-extrabold">ساخت حساب جدید</h3>
+          <span class="text-xs text-white/60">Create account</span>
+        </div>
+
+        <div id="signup-msg" class="hidden mt-3 rounded-2xl border border-white/15 bg-white/5 px-4 py-3 text-sm leading-7"></div>
+
+        <form id="signup-form" class="mt-3 space-y-3" novalidate>
+          <div class="grid grid-cols-2 gap-3 max-sm:grid-cols-1">
+            <div>
+              <label class="text-xs text-white/80" for="first-name">نام</label>
+              <div class="relative mt-2">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-white/70">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Z" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M4 20a8 8 0 0 1 16 0" stroke="currentColor" stroke-width="1.8"/>
+                  </svg>
+                </span>
+                <input id="first-name" type="text" autocomplete="given-name" required placeholder="مثلاً رضا"
+                  class="w-full rounded-2xl border border-white/15 bg-[#0a0c18]/60 px-4 py-3 pl-11
+                  text-sm outline-none placeholder:text-white/40
+                  focus:border-cyan-400/60 focus:ring-4 focus:ring-cyan-400/15">
+              </div>
+            </div>
+
+            <div>
+              <label class="text-xs text-white/80" for="last-name">نام خانوادگی</label>
+              <div class="relative mt-2">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-white/70">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 12a4 4 0 1 0-4-4 4 4 0 0 0 4 4Z" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M4 20a8 8 0 0 1 16 0" stroke="currentColor" stroke-width="1.8"/>
+                  </svg>
+                </span>
+                <input id="last-name" type="text" autocomplete="family-name" required placeholder="مثلاً اسماعیلی"
+                  class="w-full rounded-2xl border border-white/15 bg-[#0a0c18]/60 px-4 py-3 pl-11
+                  text-sm outline-none placeholder:text-white/40
+                  focus:border-cyan-400/60 focus:ring-4 focus:ring-cyan-400/15">
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label class="text-xs text-white/80" for="signup-email">ایمیل</label>
+            <div class="relative mt-2">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 text-white/70">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="1.8"/>
+                  <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.8" />
+                </svg>
+              </span>
+              <input id="signup-email" type="email" autocomplete="email" required placeholder="name@example.com"
+                class="w-full rounded-2xl border border-white/15 bg-[#0a0c18]/60 px-4 py-3 pl-11
+                text-sm outline-none placeholder:text-white/40
+                focus:border-cyan-400/60 focus:ring-4 focus:ring-cyan-400/15">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3 max-sm:grid-cols-1">
+            <div>
+              <label class="text-xs text-white/80" for="signup-password">رمز عبور</label>
+              <div class="relative mt-2">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-white/70">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M7 10V8a5 5 0 0 1 10 0v2" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M6 10h12v10H6V10Z" stroke="currentColor" stroke-width="1.8"/>
+                  </svg>
+                </span>
+                <input id="signup-password" type="password" autocomplete="new-password" minlength="8" required
+                  placeholder="حداقل 8 کاراکتر"
+                  class="w-full rounded-2xl border border-white/15 bg-[#0a0c18]/60 px-4 py-3 pl-11
+                  text-sm outline-none placeholder:text-white/40
+                  focus:border-cyan-400/60 focus:ring-4 focus:ring-cyan-400/15">
+              </div>
+            </div>
+
+            <div>
+              <label class="text-xs text-white/80" for="signup-password2">تکرار رمز عبور</label>
+              <div class="relative mt-2">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-white/70">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M7 10V8a5 5 0 0 1 10 0v2" stroke="currentColor" stroke-width="1.8"/>
+                    <path d="M6 10h12v10H6V10Z" stroke="currentColor" stroke-width="1.8"/>
+                  </svg>
+                </span>
+                <input id="signup-password2" type="password" autocomplete="new-password" minlength="8" required
+                  placeholder="دوباره وارد کن"
+                  class="w-full rounded-2xl border border-white/15 bg-[#0a0c18]/60 px-4 py-3 pl-11
+                  text-sm outline-none placeholder:text-white/40
+                  focus:border-cyan-400/60 focus:ring-4 focus:ring-cyan-400/15">
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-2 pt-1">
+            <label class="flex items-center gap-2 text-xs text-white/75 select-none">
+              <input id="tos" type="checkbox" class="h-4 w-4 accent-cyan-400">
+              قوانین و حریم خصوصی را می‌پذیرم
+            </label>
+            <a class="text-xs text-white/85 border-b border-dashed border-white/30 hover:border-white/70" href="#" onclick="return false;">
+              مشاهده قوانین
+            </a>
+          </div>
+
+          <button class="w-full rounded-2xl py-3 text-sm font-extrabold text-white
+            bg-gradient-to-br from-violet-600 to-cyan-500
+            shadow-[0_16px_35px_rgba(0,0,0,.35)] active:translate-y-px active:scale-[.99] transition"
+            type="submit">
+            ثبت‌نام
+          </button>
+
+          <div class="flex items-center gap-3 py-1 text-xs text-white/55">
+            <div class="h-px flex-1 bg-white/12"></div>
+            یا
+            <div class="h-px flex-1 bg-white/12"></div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2 max-sm:grid-cols-1">
+            <button type="button" onclick="mockSocial('Google')"
+              class="rounded-2xl border border-white/15 bg-white/5 py-3 text-sm font-bold text-white/90 hover:bg-white/10 transition">
+              ثبت‌نام با Google
+            </button>
+            <button type="button" onclick="mockSocial('GitHub')"
+              class="rounded-2xl border border-white/15 bg-white/5 py-3 text-sm font-bold text-white/90 hover:bg-white/10 transition">
+              ثبت‌نام با GitHub
+            </button>
+          </div>
+
+          <p class="pt-2 text-xs text-white/60 leading-7">
+            پیشنهاد امنیتی: رمز قوی شامل حرف بزرگ/کوچک + عدد + نماد استفاده کن.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const tabLogin = document.getElementById("tab-login");
+    const tabSignup = document.getElementById("tab-signup");
+    const panelLogin = document.getElementById("panel-login");
+    const panelSignup = document.getElementById("panel-signup");
+
+    function setActive(which){
+      const isLogin = which === "login";
+
+      tabLogin.setAttribute("aria-selected", String(isLogin));
+      tabSignup.setAttribute("aria-selected", String(!isLogin));
+
+      // کلاس‌های ظاهری تب‌ها
+      tabLogin.className = isLogin
+        ? "tab flex-1 rounded-xl px-3 py-2 text-sm font-extrabold transition text-white/95 bg-gradient-to-br from-violet-600/50 to-cyan-500/30 border border-white/15 shadow-[0_10px_25px_rgba(0,0,0,.25)]"
+        : "tab flex-1 rounded-xl px-3 py-2 text-sm font-extrabold transition text-white/70 hover:text-white/90";
+
+      tabSignup.className = !isLogin
+        ? "tab flex-1 rounded-xl px-3 py-2 text-sm font-extrabold transition text-white/95 bg-gradient-to-br from-violet-600/50 to-cyan-500/30 border border-white/15 shadow-[0_10px_25px_rgba(0,0,0,.25)]"
+        : "tab flex-1 rounded-xl px-3 py-2 text-sm font-extrabold transition text-white/70 hover:text-white/90";
+
+      panelLogin.classList.toggle("hidden", !isLogin);
+      panelSignup.classList.toggle("hidden", isLogin);
+
+      hideMsg("login-msg"); hideMsg("signup-msg");
+    }
+
+    tabLogin.addEventListener("click", () => setActive("login"));
+    tabSignup.addEventListener("click", () => setActive("signup"));
+
+    // Messages
+    function showMsg(id, text, type){
+      const el = document.getElementById(id);
+      el.classList.remove("hidden");
+      el.className =
+        "mt-3 rounded-2xl px-4 py-3 text-sm leading-7 border " +
+        (type === "ok"
+          ? "border-emerald-400/30 bg-emerald-400/10 text-white/90"
+          : "border-red-400/30 bg-red-400/10 text-white/90");
+      el.textContent = text;
+    }
+    function hideMsg(id){
+      const el = document.getElementById(id);
+      el.className = "hidden mt-3 rounded-2xl border border-white/15 bg-white/5 px-4 py-3 text-sm leading-7";
+      el.textContent = "";
+    }
+
+    // Validation
+    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    document.getElementById("login-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = document.getElementById("login-email").value.trim();
+      const pass  = document.getElementById("login-password").value;
+
+      if(!emailRe.test(email)) return showMsg("login-msg","ایمیل معتبر نیست.","bad");
+      if(pass.length < 6) return showMsg("login-msg","رمز عبور باید حداقل ۶ کاراکتر باشد.","bad");
+
+      // TODO: اینجا درخواست API واقعی بزن
+      showMsg("login-msg","ورود با موفقیت شبیه‌سازی شد ✅","ok");
+    });
+
+    document.getElementById("signup-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const fn = document.getElementById("first-name").value.trim();
+      const ln = document.getElementById("last-name").value.trim();
+      const email = document.getElementById("signup-email").value.trim();
+      const p1 = document.getElementById("signup-password").value;
+      const p2 = document.getElementById("signup-password2").value;
+      const tos = document.getElementById("tos").checked;
+
+      if(fn.length < 2 || ln.length < 2) return showMsg("signup-msg","نام و نام‌خانوادگی باید حداقل ۲ کاراکتر باشد.","bad");
+      if(!emailRe.test(email)) return showMsg("signup-msg","ایمیل معتبر نیست.","bad");
+      if(p1.length < 8) return showMsg("signup-msg","رمز عبور باید حداقل ۸ کاراکتر باشد.","bad");
+      if(p1 !== p2) return showMsg("signup-msg","رمز عبور و تکرار آن یکسان نیست.","bad");
+      if(!tos) return showMsg("signup-msg","برای ادامه باید قوانین را بپذیری.","bad");
+
+      // TODO: اینجا درخواست API واقعی بزن
+      showMsg("signup-msg","ثبت‌نام با موفقیت شبیه‌سازی شد ✅","ok");
+    });
+
+    function mockSocial(provider){
+      alert(`ورود/ثبت‌نام با ${provider} (دمو)`);
+    }
+  </script>
+</body>
+</html>
