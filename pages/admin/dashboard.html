@@ -1,0 +1,178 @@
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-8">پنل مدیریت</h1>
+    
+    <!-- KPI Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex items-center">
+                <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                </div>
+                <div class="mr-4">
+                    <p class="text-sm font-medium text-gray-600">کل سفارش‌ها</p>
+                    <p class="text-2xl font-semibold" id="total-orders">0</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex items-center">
+                <div class="p-3 rounded-full bg-green-100 text-green-600">
+                    <i class="fas fa-check-circle text-xl"></i>
+                </div>
+                <div class="mr-4">
+                    <p class="text-sm font-medium text-gray-600">سفارش‌های تکمیل شده</p>
+                    <p class="text-2xl font-semibold" id="completed-orders">0</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex items-center">
+                <div class="p-3 rounded-full bg-yellow-100 text-yellow-600">
+                    <i class="fas fa-exclamation-triangle text-xl"></i>
+                </div>
+                <div class="mr-4">
+                    <p class="text-sm font-medium text-gray-600">سفارش‌های در انتظار</p>
+                    <p class="text-2xl font-semibold" id="pending-orders">0</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex items-center">
+                <div class="p-3 rounded-full bg-purple-100 text-purple-600">
+                    <i class="fas fa-dollar-sign text-xl"></i>
+                </div>
+                <div class="mr-4">
+                    <p class="text-sm font-medium text-gray-600">درآمد کل</p>
+                    <p class="text-2xl font-semibold" id="total-revenue">۰ تومان</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Orders -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Recent Orders Table -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="px-6 py-4 border-b border-gray-200">
+                <h2 class="text-lg font-semibold">سفارش‌های اخیر</h2>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">شماره سفارش</th>
+                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">مشتری</th>
+                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">مبلغ</th>
+                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">وضعیت</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recent-orders" class="bg-white divide-y divide-gray-200">
+                        <!-- Recent orders will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-lg font-semibold mb-4">عملیات سریع</h2>
+            <div class="space-y-3">
+                <a href="#" onclick="uiHelper.loadPage('admin/orders')" class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                    <i class="fas fa-list text-blue-600 ml-3"></i>
+                    <span>مدیریت سفارش‌ها</span>
+                </a>
+                <a href="#" onclick="uiHelper.loadPage('admin/services')" class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                    <i class="fas fa-concierge-bell text-green-600 ml-3"></i>
+                    <span>مدیریت خدمات</span>
+                </a>
+                <a href="#" onclick="uiHelper.loadPage('admin/users')" class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                    <i class="fas fa-users text-purple-600 ml-3"></i>
+                    <span>مدیریت کاربران</span>
+                </a>
+                <a href="#" onclick="uiHelper.loadPage('admin/reports')" class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                    <i class="fas fa-chart-bar text-yellow-600 ml-3"></i>
+                    <span>گزارش‌های مالی</span>
+                </a>
+                <a href="#" onclick="uiHelper.loadPage('admin/settings')" class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                    <i class="fas fa-cog text-gray-600 ml-3"></i>
+                    <span>تنظیمات سیستم</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Initialize admin dashboard
+function initAdminDashboardPage() {
+    loadDashboardData();
+}
+
+// Load dashboard data
+function loadDashboardData() {
+    const allOrders = storage.getAllOrders();
+    
+    // Calculate KPIs
+    const totalOrders = allOrders.length;
+    const completedOrders = allOrders.filter(order => order.status === 'delivered').length;
+    const pendingOrders = allOrders.filter(order => 
+        order.status === 'pending' || 
+        order.status === 'confirmed' || 
+        order.status === 'preparing' || 
+        order.status === 'ready'
+    ).length;
+    const totalRevenue = allOrders.reduce((sum, order) => sum + order.total_amount, 0);
+    
+    // Update KPI cards
+    document.getElementById('total-orders').textContent = totalOrders;
+    document.getElementById('completed-orders').textContent = completedOrders;
+    document.getElementById('pending-orders').textContent = pendingOrders;
+    document.getElementById('total-revenue').textContent = formatCurrency(totalRevenue);
+    
+    // Load recent orders (last 5)
+    const recentOrders = allOrders
+        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+        .slice(0, 5);
+    
+    renderRecentOrders(recentOrders);
+}
+
+// Render recent orders table
+function renderRecentOrders(orders) {
+    const tbody = document.getElementById('recent-orders');
+    
+    if (orders.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="4" class="px-6 py-4 text-center text-gray-500">سفارشی یافت نشد</td>
+            </tr>
+        `;
+        return;
+    }
+    
+    tbody.innerHTML = orders.map(order => {
+        return `
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${order.id}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    ${order.customer_info?.name || 'ناشناس'}
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${formatCurrency(order.total_amount)}</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm">
+                        ${orderManager.getOrderStatusBadge(order.status)}
+                    </div>
+                </td>
+            </tr>
+        `;
+    }).join('');
+}
+
+// Initialize the page when loaded
+if (window.storage && window.orderManager) {
+    initAdminDashboardPage();
+}
+</script>

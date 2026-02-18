@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "name": "مدیر سیستم",
+    "phone": "09121234567",
+    "email": "admin@coffeenet.ir",
+    "role": "admin",
+    "password": "admin123"
+  },
+  {
+    "id": 2,
+    "name": "مشتری نمونه",
+    "phone": "09127654321",
+    "email": "customer@example.com",
+    "role": "customer",
+    "password": "customer123"
+  }
+]
