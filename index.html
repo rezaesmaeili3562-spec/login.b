@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>کافی‌نت - سامانه حرفه‌ای کافی‌شری</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        body {
+            direction: rtl;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div id="app">
+        <!-- Header will be loaded here -->
+        <header id="header"></header>
+        
+        <!-- Main content will be loaded dynamically -->
+        <main id="main-content">
+            <div class="container mx-auto px-4 py-8">
+                <h1 class="text-3xl font-bold text-center mb-8">به کافی‌نت خوش آمدید</h1>
+                <p class="text-center text-gray-600">سامانه حرفه‌ای کافی‌شری با امکانات کامل</p>
+            </div>
+        </main>
+        
+        <!-- Footer will be loaded here -->
+        <footer id="footer"></footer>
+    </div>
+
+    <!-- Common Components -->
+    <div id="modal-container" class="fixed inset-0 z-50 hidden">
+        <!-- Modal will be loaded dynamically -->
+    </div>
+    
+    <div id="toast-container" class="fixed top-4 left-4 z-50 space-y-2"></div>
+
+    <script src="./js/storage.js"></script>
+    <script src="./js/ui.js"></script>
+    <script src="./js/components/header.js"></script>
+    <script src="./js/components/footer.js"></script>
+    <script src="./js/components/modal.js"></script>
+    <script src="./js/components/toast.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

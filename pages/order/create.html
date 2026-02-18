@@ -1,0 +1,467 @@
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-6xl mx-auto">
+        <!-- Order Creation Wizard -->
+        <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            <!-- Progress Steps -->
+            <div class="mb-8">
+                <div class="flex justify-between relative">
+                    <!-- Line -->
+                    <div class="absolute top-4 left-0 right-0 h-1 bg-gray-200 z-0"></div>
+                    <div id="progress-line" class="absolute top-4 left-0 h-1 bg-blue-600 z-10 transition-all duration-500" style="width: 0%"></div>
+                    
+                    <!-- Step Items -->
+                    <div class="flex-1 text-center z-20">
+                        <div class="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center mx-auto mb-2 step-dot active" data-step="0">1</div>
+                        <div class="text-sm font-medium">انتخاب خدمت</div>
+                    </div>
+                    <div class="flex-1 text-center z-20">
+                        <div class="w-8 h-8 bg-gray-300 text-white rounded-full flex items-center justify-center mx-auto mb-2 step-dot" data-step="1">2</div>
+                        <div class="text-sm font-medium">تنظیم گزینه‌ها</div>
+                    </div>
+                    <div class="flex-1 text-center z-20">
+                        <div class="w-8 h-8 bg-gray-300 text-white rounded-full flex items-center justify-center mx-auto mb-2 step-dot" data-step="2">3</div>
+                        <div class="text-sm font-medium">توضیحات و پرداخت</div>
+                    </div>
+                    <div class="flex-1 text-center z-20">
+                        <div class="w-8 h-8 bg-gray-300 text-white rounded-full flex items-center justify-center mx-auto mb-2 step-dot" data-step="3">4</div>
+                        <div class="text-sm font-medium">تکمیل سفارش</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step Content -->
+            <div id="step-content">
+                <!-- Step 1: Select Service -->
+                <div id="step-1" class="step active">
+                    <h2 class="text-2xl font-bold mb-6">انتخاب خدمت</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Services will be loaded here -->
+                    </div>
+
+                    <div class="flex justify-between mt-8">
+                        <div></div> <!-- Empty div for spacing -->
+                        <button onclick="nextStep(2)" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                            مرحله بعد
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Configure Options -->
+                <div id="step-2" class="step hidden">
+                    <h2 class="text-2xl font-bold mb-6">تنظیم گزینه‌ها</h2>
+                    
+                    <div id="selected-service-info" class="bg-gray-50 p-4 rounded-lg mb-6">
+                        <!-- Selected service info will appear here -->
+                    </div>
+                    
+                    <div id="options-container" class="mb-6">
+                        <!-- Options will be loaded here -->
+                    </div>
+
+                    <div class="flex justify-between mt-8">
+                        <button onclick="prevStep(1)" class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors">
+                            مرحله قبل
+                        </button>
+                        <button onclick="nextStep(3)" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                            مرحله بعد
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Notes and Payment -->
+                <div id="step-3" class="step hidden">
+                    <h2 class="text-2xl font-bold mb-6">توضیحات و پرداخت</h2>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <div class="lg:col-span-2">
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">توضیحات اضافی</label>
+                                <textarea 
+                                    id="order-notes" 
+                                    rows="4" 
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    placeholder="توضیحات خود را در مورد سفارش وارد کنید..."
+                                ></textarea>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">آپلود فایل</label>
+                                <div class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center cursor-pointer hover:border-blue-500 transition-colors" onclick="document.getElementById('file-upload').click()">
+                                    <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-4"></i>
+                                    <p class="text-gray-600">فایل خود را برای آپلود انتخاب کنید یا اینجا را کلیک کنید</p>
+                                    <p class="text-sm text-gray-500 mt-2">حداکثر حجم: 10 مگابایت</p>
+                                </div>
+                                <input type="file" id="file-upload" class="hidden" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+                            </div>
+                        </div>
+                        
+                        <div class="lg:col-span-1">
+                            <div class="bg-gray-50 p-6 rounded-lg sticky top-24">
+                                <h3 class="text-lg font-semibold mb-4">خلاصه سفارش</h3>
+                                
+                                <div id="order-summary" class="space-y-3 mb-4">
+                                    <!-- Order summary items will appear here -->
+                                </div>
+                                
+                                <div class="border-t pt-4 mt-4">
+                                    <div class="flex justify-between text-lg font-bold">
+                                        <span>جمع کل:</span>
+                                        <span id="order-total">۰ تومان</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between mt-8">
+                        <button onclick="prevStep(2)" class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors">
+                            مرحله قبل
+                        </button>
+                        <button onclick="nextStep(4)" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                            مرحله بعد
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Confirm Order -->
+                <div id="step-4" class="step hidden">
+                    <h2 class="text-2xl font-bold mb-6">تکمیل سفارش</h2>
+                    
+                    <div class="bg-blue-50 p-6 rounded-lg mb-6">
+                        <h3 class="text-lg font-semibold mb-2">سفارش شما آماده ارسال است!</h3>
+                        <p class="text-gray-700">لطفاً قبل از ارسال نهایی، اطلاعات زیر را بررسی کنید:</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <div class="lg:col-span-2">
+                            <div class="bg-white border rounded-lg overflow-hidden">
+                                <div class="border-b px-6 py-4 bg-gray-50">
+                                    <h3 class="text-lg font-semibold">اطلاعات سفارش</h3>
+                                </div>
+                                <div class="p-6">
+                                    <div id="final-order-details">
+                                        <!-- Final order details will appear here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="lg:col-span-1">
+                            <div class="bg-gray-50 p-6 rounded-lg">
+                                <h3 class="text-lg font-semibold mb-4">عملیات نهایی</h3>
+                                
+                                <div class="space-y-4">
+                                    <div class="flex justify-between text-lg font-bold border-b pb-2">
+                                        <span>جمع کل:</span>
+                                        <span id="final-order-total">۰ تومان</span>
+                                    </div>
+                                    
+                                    <button onclick="submitOrder()" class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors font-semibold">
+                                        تأیید و ارسال سفارش
+                                    </button>
+                                    
+                                    <button onclick="prevStep(3)" class="w-full bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition-colors">
+                                        ویرایش سفارش
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Current step tracking
+let currentStep = 1;
+let selectedService = null;
+let serviceOptions = {};
+
+// Initialize order creation page
+function initOrderCreatePage() {
+    loadServicesForSelection();
+    updateProgress(1);
+    
+    // Load any existing draft
+    const draft = orderManager.getDraftOrder();
+    if (draft.items.length > 0) {
+        // If there's a draft with items, start from step 2
+        currentStep = 2;
+        showStep(currentStep);
+        updateProgress(currentStep);
+        loadSelectedService(draft.items[0]);
+    }
+    
+    // Add event listener for file upload
+    document.getElementById('file-upload').addEventListener('change', handleFileUpload);
+}
+
+// Load services for selection in step 1
+function loadServicesForSelection() {
+    const services = storage.getAllServices();
+    const container = document.querySelector('#step-1 .grid');
+    
+    container.innerHTML = services.map(service => {
+        const category = storage.getAllCategories().find(cat => cat.id === service.category_id);
+        return `
+            <div class="border rounded-lg p-4 hover:border-blue-500 cursor-pointer transition-colors" onclick="selectService(${service.id})">
+                <div class="flex justify-between items-start mb-2">
+                    <h3 class="font-semibold">${service.title}</h3>
+                    <span class="text-blue-600">${formatCurrency(service.price)}</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-3">${service.description}</p>
+                <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded">${category?.name || 'دسته‌بندی نشده'}</span>
+            </div>
+        `;
+    }).join('');
+}
+
+// Select a service
+function selectService(serviceId) {
+    const service = storage.getAllServices().find(s => s.id === serviceId);
+    if (!service) return;
+    
+    selectedService = service;
+    serviceOptions = {};
+    
+    // Update step 2 with selected service
+    loadSelectedService(selectedService);
+    
+    toast.success('خدمت با موفقیت انتخاب شد');
+}
+
+// Load selected service info in step 2
+function loadSelectedService(service) {
+    document.getElementById('selected-service-info').innerHTML = `
+        <div class="flex justify-between items-start">
+            <div>
+                <h3 class="text-lg font-semibold">${service.title}</h3>
+                <p class="text-gray-600">${service.description}</p>
+            </div>
+            <div class="text-blue-600 text-2xl">
+                <i class="fas fa-coffee"></i>
+            </div>
+        </div>
+    `;
+    
+    // Load options
+    loadServiceOptions(service);
+}
+
+// Load service options
+function loadServiceOptions(service) {
+    const container = document.getElementById('options-container');
+    
+    if (!service.options || service.options.length === 0) {
+        container.innerHTML = '<p class="text-gray-600">این خدمت گزینه‌های اضافی ندارد.</p>';
+        return;
+    }
+    
+    let optionsHtml = '<div class="space-y-4">';
+    
+    service.options.forEach(option => {
+        optionsHtml += `
+            <div>
+                <label class="block text-sm font-medium text-gray-700 mb-2">${option.name}</label>
+                <select id="option-${option.id}" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" onchange="updateOption(${option.id}, this.value)">
+                    ${option.values.map((value, idx) => `<option value="${idx}">${value} (+${formatCurrency(option.prices[idx])})</option>`).join('')}
+                </select>
+            </div>
+        `;
+    });
+    
+    optionsHtml += '</div>';
+    container.innerHTML = optionsHtml;
+}
+
+// Update selected option
+function updateOption(optionId, valueIndex) {
+    serviceOptions[optionId] = parseInt(valueIndex);
+    updateOrderSummary();
+}
+
+// Update order summary
+function updateOrderSummary() {
+    const summaryContainer = document.getElementById('order-summary');
+    const totalElement = document.getElementById('order-total');
+    
+    if (!selectedService) {
+        summaryContainer.innerHTML = '<p class="text-gray-600">هیچ خدمتی انتخاب نشده است.</p>';
+        totalElement.textContent = '۰ تومان';
+        return;
+    }
+    
+    // Calculate total price with options
+    let totalPrice = selectedService.price;
+    if (selectedService.options) {
+        selectedService.options.forEach(option => {
+            if (serviceOptions[option.id] !== undefined) {
+                const priceToAdd = option.prices[serviceOptions[option.id]] || 0;
+                totalPrice += priceToAdd;
+            }
+        });
+    }
+    
+    summaryContainer.innerHTML = `
+        <div class="flex justify-between">
+            <span>${selectedService.title}</span>
+            <span>${formatCurrency(totalPrice)}</span>
+        </div>
+    `;
+    
+    totalElement.textContent = formatCurrency(totalPrice);
+    
+    // Also update the final order total
+    const finalTotal = document.getElementById('final-order-total');
+    if (finalTotal) {
+        finalTotal.textContent = formatCurrency(totalPrice);
+    }
+}
+
+// Handle file upload
+function handleFileUpload(event) {
+    const file = event.target.files[0];
+    if (file) {
+        if (file.size > 10 * 1024 * 1024) { // 10MB
+            toast.error('حجم فایل باید کمتر از 10 مگابایت باشد');
+            event.target.value = '';
+            return;
+        }
+        
+        // For demo, we'll just store basic file info
+        toast.success('فایل با موفقیت انتخاب شد');
+    }
+}
+
+// Navigate to next step
+function nextStep(stepNumber) {
+    if (stepNumber <= 4 && stepNumber > currentStep) {
+        if (currentStep === 1 && !selectedService) {
+            toast.error('لطفاً ابتدا یک خدمت انتخاب کنید');
+            return;
+        }
+        
+        showStep(stepNumber);
+        currentStep = stepNumber;
+        updateProgress(currentStep);
+        
+        if (currentStep === 3) {
+            updateOrderSummary();
+        } else if (currentStep === 4) {
+            showFinalOrderDetails();
+        }
+    }
+}
+
+// Navigate to previous step
+function prevStep(stepNumber) {
+    if (stepNumber >= 1 && stepNumber < currentStep) {
+        showStep(stepNumber);
+        currentStep = stepNumber;
+        updateProgress(currentStep);
+    }
+}
+
+// Show specific step
+function showStep(stepNumber) {
+    // Hide all steps
+    document.querySelectorAll('.step').forEach(step => {
+        step.classList.add('hidden');
+    });
+    
+    // Show current step
+    document.getElementById(`step-${stepNumber}`).classList.remove('hidden');
+    
+    // Update step dots
+    document.querySelectorAll('.step-dot').forEach(dot => {
+        const stepNum = parseInt(dot.getAttribute('data-step')) + 1;
+        if (stepNum === stepNumber) {
+            dot.classList.add('bg-blue-600');
+            dot.classList.remove('bg-gray-300');
+        } else if (stepNum < stepNumber) {
+            dot.classList.add('bg-green-600');
+            dot.classList.remove('bg-gray-300');
+        } else {
+            dot.classList.add('bg-gray-300');
+            dot.classList.remove('bg-blue-600', 'bg-green-600');
+        }
+    });
+}
+
+// Update progress bar
+function updateProgress(stepNumber) {
+    const progressPercent = ((stepNumber - 1) / 3) * 100;
+    document.getElementById('progress-line').style.width = `${progressPercent}%`;
+}
+
+// Show final order details
+function showFinalOrderDetails() {
+    const notes = document.getElementById('order-notes').value;
+    const finalDetails = document.getElementById('final-order-details');
+    
+    let optionsList = '';
+    if (selectedService.options && selectedService.options.length > 0) {
+        optionsList = '<div class="mb-4"><h4 class="font-medium mb-2">گزینه‌های انتخاب شده:</h4><ul class="list-disc list-inside">';
+        selectedService.options.forEach(option => {
+            if (serviceOptions[option.id] !== undefined) {
+                const value = option.values[serviceOptions[option.id]];
+                const price = option.prices[serviceOptions[option.id]];
+                optionsList += `<li>${option.name}: ${value} ${(price > 0 ? '(+' + formatCurrency(price) + ')' : '')}</li>`;
+            }
+        });
+        optionsList += '</ul></div>';
+    }
+    
+    finalDetails.innerHTML = `
+        <div class="mb-4">
+            <h4 class="font-medium mb-2">خدمت:</h4>
+            <p>${selectedService.title}</p>
+        </div>
+        ${optionsList}
+        <div class="mb-4">
+            <h4 class="font-medium mb-2">توضیحات:</h4>
+            <p class="text-gray-700">${notes || 'بدون توضیحات'}</p>
+        </div>
+        <div class="mb-4">
+            <h4 class="font-medium mb-2">قیمت نهایی:</h4>
+            <p class="text-lg font-semibold">${document.getElementById('final-order-total').textContent}</p>
+        </div>
+    `;
+}
+
+// Submit the order
+function submitOrder() {
+    const notes = document.getElementById('order-notes').value;
+    
+    // Add selected service to order manager
+    const optionsArray = Object.keys(serviceOptions).map(key => ({
+        optionId: parseInt(key),
+        valueIndex: serviceOptions[key]
+    }));
+    
+    orderManager.addItem(selectedService.id, optionsArray);
+    orderManager.updateNotes(notes);
+    
+    // Submit the order
+    const result = orderManager.submitOrder(auth.getCurrentUser());
+    
+    if (result.success) {
+        toast.success('سفارش شما با موفقیت ثبت شد');
+        
+        // Redirect to order tracking page after a short delay
+        setTimeout(() => {
+            uiHelper.loadPage('track-order');
+        }, 2000);
+    } else {
+        toast.error(result.message || 'خطا در ثبت سفارش');
+    }
+}
+
+// Initialize the page when loaded
+if (window.orderManager && window.storage && window.auth) {
+    initOrderCreatePage();
+}
+</script>
